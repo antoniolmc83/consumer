@@ -15,30 +15,22 @@ import org.springframework.integration.dsl.IntegrationFlows;
 
 
 @Configuration
-@EnableBinding(Sink.class)
+@EnableBinding({ConsumerChannels.class})//Sink.class,
 public class EventSink {
 	private static Logger logger = LoggerFactory.getLogger(EventSink.class);
 	
-    @StreamListener( Sink.INPUT)
+//    @StreamListener( Sink.INPUT)
     public void loggerSink(String sinkTimedMessage) {
     	
         logger.info("Received: " + sinkTimedMessage.toString());
-    }	
+    }
+    
+    
+    @StreamListener( ConsumerChannels.INPUT)
+    public void secondLoggerSink(String sinkTimedMessage) {
+    	
+        logger.info("Received secondLogger: " + sinkTimedMessage.toString());
+    }
 	
-//	@Bean
-//	@Scope("prototype")
-//	Logger logger(InjectionPoint ip){
-//		return Logger.getLogger(ip.getDeclaredType().getName());
-//	}
-//	
-//	
-//	@Bean
-//	IntegrationFlow integrationFlow(Logger logger, ConsumerChannels c){
-//		return IntegrationFlows.from(c.source()).
-//				handle(String.class, (payload, headers) ->{
-//				logger.info("new message " + payload);
-//			return null;
-//		}).get();
-//	}
-//	
+
 }

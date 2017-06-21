@@ -6,9 +6,12 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
 interface ConsumerChannels{
+	
+	String INPUT = "source";
+	
 	@Input
 	SubscribableChannel source();
 	
-	@Output
-	MessageChannel sink();
+//	@Output
+//	MessageChannel sink();
 }

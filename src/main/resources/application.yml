@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: myconsumer
+  cloud:
+    stream:
+      bindings:
+#        input:
+#          destination: mychannel
+#          group: myconsumer-group
+        source:
+          destination: mychannel-out
+          group: myconsumer-out-group
+              
+
+server:
+  port: 0
+
+app:
+  myconsumer:
+    spring:
+      cloud:
+        stream:
+          bindings:
+    #        input:
+    #          destination: mychannel
+    #          group: myconsumer-group
+            source:
+              destination: mychannel-out
+              group: myconsumer-out-group
